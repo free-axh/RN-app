@@ -1,0 +1,17 @@
+use_frameworks!
+platform :ios, ‘9.0‘
+target "rnProject" do
+
+pod 'BaiduMapKit’,’4.3.2’
+pod 'Bugly'
+pod 'AMapNavi'
+pod 'UMCCommon'
+pod 'UMCSecurityPlugins'
+pod 'UMCCommonLog'
+pod 'UMCShare/UI'
+pod 'UMCShare/Social/ReducedWeChat'
+pod 'UMCShare/Social/WeChat'
+pod 'UMCShare/Social/ReducedQQ'
+pod 'UMCShare/Social/QQ'
+
+end

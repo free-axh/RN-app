@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>rnProject.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>7E64F8B28347957F155E35D78FBB320C4DE43D08</string>
+				<key>dateExpires</key>
+				<string>2018/12/1</string>
+				<key>type</key>
+				<string>iOS Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>YJ2PUNM26A.com.zwlbs.zwlbsapp</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>YJ2PUNM26A</string>
+				<key>get-task-allow</key>
+				<false/>
+				<key>keychain-access-groups</key>
+				<array>
+					<string>YJ2PUNM26A.com.zwlbs.zwlbsapp</string>
+				</array>
+			</dict>
+			<key>name</key>
+			<string>rnProject.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>3c6d81a8-ef6b-488f-bc41-fc6d31e51f70</string>
+				<key>name</key>
+				<string>iOS Team Ad Hoc Provisioning Profile: com.zwlbs.zwlbsapp</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>YJ2PUNM26A</string>
+				<key>name</key>
+				<string>lei yu</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
