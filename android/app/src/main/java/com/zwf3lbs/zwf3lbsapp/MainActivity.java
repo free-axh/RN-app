@@ -1,0 +1,86 @@
+package com.zwf3lbs.zwf3lbsapp;
+
+import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+
+import com.facebook.react.ReactActivity;
+import com.liulishuo.filedownloader.FileDownloader;
+import com.umeng.socialize.UMShareAPI;
+import com.zwf3lbs.appversion.UpdateHelper;
+import com.zwf3lbs.share.ShareAppModule;
+// import com.mehcode.reactnative.splashscreen.SplashScreen;
+// 禁止字体缩放
+import android.content.res.Configuration;
+import android.content.res.Resources;
+
+public class MainActivity extends ReactActivity {
+    /**
+     * Returns the name of the main component registered from JavaScript.
+     * This is used to schedule rendering of the component.
+     */
+    @Override
+    protected String getMainComponentName() {
+        return "rnProject";
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        // Show the js-controlled splash screen
+        // SplashScreen.show(this, getReactInstanceManager());
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        super.onCreate(savedInstanceState);
+        verifyPermission(this.getApplicationContext());
+        // [...]
+//        ShareAppModule.initActivity(this);
+        ShareAppModule.initSocialSDK(this);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
+
+    private static final int REQUEST_PERMISSIONS_CODE = 1;
+    private static String[] PERMISSIONS_REQUESTS = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.CAMERA
+    };
+
+    public void verifyPermission(Context context){
+        int permissionStorage = ActivityCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        // GPS权限
+        int permissionGps = ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION);
+        if (permissionStorage != PackageManager.PERMISSION_GRANTED || permissionGps != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(MainActivity.this, PERMISSIONS_REQUESTS, REQUEST_PERMISSIONS_CODE);
+        }
+        FileDownloader.setup(context);
+        UpdateHelper.getInstance().setActivity(this);
+        UpdateHelper.getInstance().setContext(context);
+    }
+
+     // 禁止字体缩放
+    @Override
+    public Resources getResources() {
+ 
+        Resources res = super.getResources();
+ 
+        Configuration config=new Configuration();
+ 
+        config.setToDefaults();
+ 
+        res.updateConfiguration(config,res.getDisplayMetrics());
+ 
+        return res;
+ 
+    }
+}
